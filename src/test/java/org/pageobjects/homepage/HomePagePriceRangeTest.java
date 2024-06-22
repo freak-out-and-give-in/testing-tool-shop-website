@@ -8,17 +8,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomePage_PriceRangeTest {
+class HomePagePriceRangeTest {
 
     private WebDriver driver;
 
-    private HomePage_PriceRange homePagePriceRange;
+    private HomePagePriceRange homePagePriceRange;
 
     @BeforeEach
     void setUp() {
         driver = new ChromeDriver();
 
-        homePagePriceRange = new HomePage_PriceRange(driver);
+        homePagePriceRange = new HomePagePriceRange(driver);
         homePagePriceRange.load();
         homePagePriceRange.isLoaded();
     }

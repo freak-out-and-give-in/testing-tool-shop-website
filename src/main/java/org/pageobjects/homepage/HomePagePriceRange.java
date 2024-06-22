@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HomePage_PriceRange extends LoadableComponent<HomePage_PriceRange> {
+public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
 
     private WebDriver driver;
 
@@ -25,7 +25,7 @@ public class HomePage_PriceRange extends LoadableComponent<HomePage_PriceRange> 
     @FindBy(className = "ngx-slider-pointer-max")
     private WebElement upperRangeSlider;
 
-    public HomePage_PriceRange(WebDriver driver) {
+    public HomePagePriceRange(WebDriver driver) {
         this.driver = driver;
 
         PageFactory.initElements(driver, this);
@@ -39,7 +39,7 @@ public class HomePage_PriceRange extends LoadableComponent<HomePage_PriceRange> 
     @Override
     protected void isLoaded() throws Error {
         String url = driver.getCurrentUrl();
-        assertTrue(url.endsWith("#/"), "Not on the issue entry page: " + url);
+        assertTrue(url.endsWith("#/"), "Not on the home page: " + url);
     }
 
     public void changePriceRange(int wantedLowerRange, int wantedHigherRange) {

@@ -3,23 +3,37 @@ package org.pageobjects.homepage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HomePage_SortTest {
+class HomePageSortTest {
 
-    private HomePage_Sort homePageSort;
+    private WebDriver driver;
+
+    private HomePageSort homePageSort;
 
     @BeforeEach
     void setUp() {
+        driver = new ChromeDriver();
+
+        homePageSort = new HomePageSort(driver);
+        homePageSort.load();
+        homePageSort.isLoaded();
     }
 
     @AfterEach
     void tearDown() {
+        driver.quit();
     }
 
     @Test
-    void givenHomePage_whenSortingByAlphabetical_thenItemsShouldBeSorted() {
+    void givenHomePage_whenSortingByAlphabetical_thenItemsShouldBeSortedAlphabetically() {
+        String expectedFirstItemName = " Wood Saw ";
 
+        HomePageItems homePageItems = homePageSort.sortBy(HomePageSort.Sort.Z_TO_A);
+
+        assertEquals(expectedFirstItemName.trim(), homePageItems.getFirstItemName(expectedFirstItemName));
     }
 }

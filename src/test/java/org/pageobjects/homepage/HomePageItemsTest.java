@@ -30,8 +30,6 @@ class HomePageItemsTest {
 
     @Test
     void givenHomePage_whenCheckingTheFirstItem_thenReturnItsName() {
-        String expectedFirstItemName = " Combination Pliers ";
-
-        assertEquals(expectedFirstItemName.trim(), homePageItems.getFirstItemName(expectedFirstItemName));
+        assertEquals("Combination Pliers", homePageItems.getFirstItemName(false));
     }
 }

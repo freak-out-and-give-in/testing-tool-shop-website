@@ -33,10 +33,13 @@ class HomePagePriceRangeTest {
         int lowerPriceRange = 12;
         int higherPriceRange = 85;
 
-        homePagePriceRange.changePriceRange(lowerPriceRange, higherPriceRange);
+        HomePageItems homePageItems = homePagePriceRange.changePriceRange(lowerPriceRange, higherPriceRange);
 
         assertEquals(homePagePriceRange.getLowerPriceRange(), lowerPriceRange);
         assertEquals(homePagePriceRange.getUpperPriceRange(), higherPriceRange);
+
+        assertTrue(homePageItems.getFirstItemCost() >= 12);
+        assertTrue(homePageItems.getFirstItemCost() <= 85);
     }
 
 }

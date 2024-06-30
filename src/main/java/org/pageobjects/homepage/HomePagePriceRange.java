@@ -6,10 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     private WebDriver driver;
 
@@ -42,7 +46,9 @@ public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
         assertTrue(url.endsWith("#/"), "Not on the home page: " + url);
     }
 
-    public void changePriceRange(int wantedLowerRange, int wantedHigherRange) {
+    public HomePageItems changePriceRange(int wantedLowerRange, int wantedHigherRange) {
+        log.debug("Changing the price range, wanted lower range: {}, wanted higher range: {}", wantedLowerRange, wantedHigherRange);
+
         if (wantedLowerRange < 0) {
             throw new IllegalArgumentException("The lower range can only go to 0, the value entered: "
                     + wantedLowerRange + ", is out of bounds.");
@@ -55,9 +61,13 @@ public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
 
         changeSlider(wantedLowerRange, true);
         changeSlider(wantedHigherRange, false);
+
+        return new HomePageItems(driver);
     }
 
     private void changeSlider(int wantedRange, boolean isLowerRange) {
+        log.debug("Changing the price slider, wanted range: {}, is a lower range: {}", wantedRange, isLowerRange);
+
         int lowerRangeDifference = wantedRange - getLowerPriceRange();
         int upperRangeDifference = wantedRange - getUpperPriceRange();
 
@@ -76,10 +86,14 @@ public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
     }
 
     public int getLowerPriceRange() {
+        log.debug("Getting the lower price range");
+
         return Integer.parseInt(lowerRange.getText());
     }
 
     public int getUpperPriceRange() {
+        log.debug("Getting the upper price range");
+
         return Integer.parseInt(upperRange.getText());
     }
 }

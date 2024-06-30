@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -12,6 +14,8 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePageSort extends LoadableComponent<HomePageSort> {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     private WebDriver driver;
 
@@ -39,6 +43,8 @@ public class HomePageSort extends LoadableComponent<HomePageSort> {
     }
 
     public HomePageItems sortBy(Sort sort) {
+        log.debug("Sort by {}", sort);
+
         sortSelect.click();
 
         WebElement option = getSortOptionByValue(sort.getValue());
@@ -48,6 +54,8 @@ public class HomePageSort extends LoadableComponent<HomePageSort> {
     }
 
     private WebElement getSortOptionByValue(String value) {
+        log.debug("Getting the sort option by the value {}", value);
+
         for (WebElement option : sortOptions) {
             if (option.getAttribute("value").equals(value)) {
                 return option;

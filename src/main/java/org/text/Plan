@@ -6,7 +6,9 @@ Loadable Component
 Page factory
 Nested Components
 Domain specific language
+
 Data driven-testing
+Logging
 
 Functional testing
 Integration testing
@@ -19,8 +21,7 @@ Home:
 Sort
 Price range
 Search bar
-Category
-Brand
+Items (helper)
 
 Item:
 Add to cart

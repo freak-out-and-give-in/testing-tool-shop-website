@@ -30,10 +30,8 @@ class HomePageSortTest {
 
     @Test
     void givenHomePage_whenSortingByAlphabetical_thenItemsShouldBeSortedAlphabetically() {
-        String expectedFirstItemName = " Wood Saw ";
-
         HomePageItems homePageItems = homePageSort.sortBy(HomePageSort.Sort.Z_TO_A);
 
-        assertEquals(expectedFirstItemName.trim(), homePageItems.getFirstItemName(expectedFirstItemName));
+        assertEquals("Wood Saw", homePageItems.getFirstItemName(true));
     }
 }

@@ -39,13 +39,13 @@ public class HomePageSearch extends LoadableComponent<HomePageSearch> {
         assertTrue(url.endsWith("#/"), "Not on the home page: " + url);
     }
 
-    public HomePageItems searchFor(String itemNameToSearchFor) {
+    public HomePageProducts searchFor(String itemNameToSearchFor) {
         log.debug("Searching for {}", itemNameToSearchFor);
 
         searchBar.clear();
         searchBar.sendKeys(itemNameToSearchFor);
         searchButton.click();
 
-        return new HomePageItems(driver);
+        return new HomePageProducts(driver);
     }
 }

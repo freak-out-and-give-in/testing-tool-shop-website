@@ -1,4 +1,4 @@
-package org.pageobjects.homepage;
+package org.pageobjects.registerpage;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,19 +8,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomePageItemsTest {
+class RegisterPageTest {
 
     private WebDriver driver;
 
-    private HomePageItems homePageItems;
+    private RegisterPage registerPage;
 
     @BeforeEach
     void setUp() {
         driver = new ChromeDriver();
 
-        homePageItems = new HomePageItems(driver);
-        homePageItems.load();
-        homePageItems.isLoaded();
+        registerPage = new RegisterPage(driver);
+        registerPage.load();
+        registerPage.isLoaded();
     }
 
     @AfterEach
@@ -29,7 +29,10 @@ class HomePageItemsTest {
     }
 
     @Test
-    void givenHomePage_whenCheckingTheFirstItem_thenReturnItsName() {
-        assertEquals("Combination Pliers", homePageItems.getFirstItemName(false));
+    void registerAs() {
+        registerPage.registerAs("firsn", "lastn", "14/03/1994", "address", "postc",
+                "city", "state", "Andorra", "90123", "email@address", "pa3FTJ**2sd");
+
+        assertTrue(registerPage.wasRegisterSuccessful());
     }
 }

@@ -18,16 +18,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HomePageItems extends LoadableComponent<HomePageItems> {
+public class HomePageProducts extends LoadableComponent<HomePageProducts> {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     private WebDriver driver;
 
     @FindBy(css = ".card")
-    private List<WebElement> items;
+    private List<WebElement> products;
 
-    public HomePageItems(WebDriver driver) {
+    public HomePageProducts(WebDriver driver) {
         this.driver = driver;
 
         PageFactory.initElements(driver, this);
@@ -57,7 +57,7 @@ public class HomePageItems extends LoadableComponent<HomePageItems> {
         log.debug("Waiting for cards to load for sorting");
 
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        String originalItemName = items.get(0).findElement(By.className("card-title")).getText();
+        String originalItemName = products.get(0).findElement(By.className("card-title")).getText();
 
         // This is for sorting, as once you click a sorting option it takes a bit to load,
         // and during that loading the cards are removed temporarily, so when it tries to find the first card it
@@ -67,30 +67,30 @@ public class HomePageItems extends LoadableComponent<HomePageItems> {
             try {
                 // Waits until the expected first card has the given name
                 wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(
-                        items.get(0).findElement(By.className("card-title")), originalItemName)));
+                        products.get(0).findElement(By.className("card-title")), originalItemName)));
                 break;
             } catch(StaleElementReferenceException ignored) {}
         }
     }
 
-    public double getFirstItemCost() {
-        log.debug("Getting the first item's cost");
+    public double getFirstProductCost() {
+        log.debug("Getting the first product's cost");
 
         waitForCardsToLoad();
-        WebElement firstItem = items.get(0).findElement(By.className("card-footer"));
+        WebElement firstItem = products.get(0).findElement(By.className("card-footer"));
 
         return Double.parseDouble(firstItem.getText().replace("$", ""));
     }
 
-    // Flag is for whether we need to wait for new items to load, active currently for sorting and searching.
-    public String getFirstItemName(boolean loadNewItemsFlag) {
-        log.debug("Getting the first item's name");
+    // Flag is for whether we need to wait for new products to load, active currently for sorting and searching.
+    public String getFirstProductName(boolean loadNewItemsFlag) {
+        log.debug("Getting the first product's name");
 
         waitForCardsToLoad();
         if (loadNewItemsFlag) {
             waitForCardsToLoadForSort();
         }
 
-        return items.get(0).findElement(By.className("card-title")).getText();
+        return products.get(0).findElement(By.className("card-title")).getText();
     }
 }

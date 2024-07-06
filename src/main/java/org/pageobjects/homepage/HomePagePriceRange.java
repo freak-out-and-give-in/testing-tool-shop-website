@@ -46,7 +46,7 @@ public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
         assertTrue(url.endsWith("#/"), "Not on the home page: " + url);
     }
 
-    public HomePageItems changePriceRange(int wantedLowerRange, int wantedHigherRange) {
+    public HomePageProducts changePriceRange(int wantedLowerRange, int wantedHigherRange) {
         log.debug("Changing the price range, wanted lower range: {}, wanted higher range: {}", wantedLowerRange, wantedHigherRange);
 
         if (wantedLowerRange < 0) {
@@ -62,7 +62,7 @@ public class HomePagePriceRange extends LoadableComponent<HomePagePriceRange> {
         changeSlider(wantedLowerRange, true);
         changeSlider(wantedHigherRange, false);
 
-        return new HomePageItems(driver);
+        return new HomePageProducts(driver);
     }
 
     private void changeSlider(int wantedRange, boolean isLowerRange) {

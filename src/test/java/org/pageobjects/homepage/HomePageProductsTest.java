@@ -8,19 +8,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomePageSearchTest {
+class HomePageProductsTest {
 
     private WebDriver driver;
 
-    private HomePageSearch homePageSearch;
+    private HomePageProducts homePageProducts;
 
     @BeforeEach
     void setUp() {
         driver = new ChromeDriver();
 
-        homePageSearch = new HomePageSearch(driver);
-        homePageSearch.load();
-        homePageSearch.isLoaded();
+        homePageProducts = new HomePageProducts(driver);
+        homePageProducts.load();
+        homePageProducts.isLoaded();
     }
 
     @AfterEach
@@ -29,11 +29,7 @@ class HomePageSearchTest {
     }
 
     @Test
-    void givenHomePage_whenSearching_thenSearchShouldBeSuccessful() {
-        String itemNameToSearchFor = "Thor Hammer";
-
-        HomePageProducts homePageProducts = homePageSearch.searchFor(itemNameToSearchFor);
-
-        assertEquals(itemNameToSearchFor, homePageProducts.getFirstProductName(true));
+    void givenHomePage_whenCheckingTheFirstItem_thenReturnItsName() {
+        assertEquals("Combination Pliers", homePageProducts.getFirstProductName(false));
     }
 }

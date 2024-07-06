@@ -42,7 +42,7 @@ public class HomePageSort extends LoadableComponent<HomePageSort> {
         assertTrue(url.endsWith("#/"), "Not on the home page: " + url);
     }
 
-    public HomePageItems sortBy(Sort sort) {
+    public HomePageProducts sortBy(Sort sort) {
         log.debug("Sort by {}", sort);
 
         sortSelect.click();
@@ -50,7 +50,7 @@ public class HomePageSort extends LoadableComponent<HomePageSort> {
         WebElement option = getSortOptionByValue(sort.getValue());
         option.click();
 
-        return new HomePageItems(driver);
+        return new HomePageProducts(driver);
     }
 
     private WebElement getSortOptionByValue(String value) {
